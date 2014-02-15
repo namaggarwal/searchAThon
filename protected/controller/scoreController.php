@@ -34,8 +34,12 @@ class scoreController extends BaseController{
   				$this->viewData["SCORE"] = $myScore;
   				$this->viewData["LOGOUT_URL"] = config::BASE_URL."/logout";
 				$this->view->init($this->viewData);
-
-  				
+				$args = array(
+  				  	'message'   => 'I just scored '.$myScore. ' on SearchAThon!',
+    				'link'      => 'http://namanagg.kd.io/searchAthon',
+    				'caption'   => 'Can you beat that score? Play hide and seek with your friends online!'
+				);
+  				$isPosted = $facebook->api('/'.$user_id.'/feed','POST',$args);
   			}else{
   				header("Location:".config::BASE_URL);	
   			}

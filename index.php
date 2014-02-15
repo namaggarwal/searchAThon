@@ -3,6 +3,7 @@ require_once("config.php");
 require_once("router.php");
 require_once("/protected/controller/baseController.php");
 require_once("/protected/controller/homeController.php");
+require_once("/protected/controller/shantanuController.php");
 
 class searchAThon extends baseController{
 
@@ -15,17 +16,21 @@ class searchAThon extends baseController{
 
 	private function setRequestParams(){
 
+
+
 		$this->req_method = strtoupper($_SERVER["REQUEST_METHOD"]);
 		$this->req_url = str_replace(config::BASE_URL,"",$_SERVER['REQUEST_URI']);
 
 		$this->contData["REQUEST_METHOD"] = $this->req_method;
-		$this->contData["REQUEST_URL"] = $this->req_url;		
+		$this->contData["REQUEST_URL"] = $this->req_url;
+	
 
 	}
 
 	public function init(){
 
 		$this->setRequestParams();
+		
 		$rout = new router($this->contData);
 		$contName = $rout->getController();			
 		$this->cont = new $contName();

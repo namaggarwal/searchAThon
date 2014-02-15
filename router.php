@@ -12,12 +12,13 @@ class router {
 		$this->routerReq["POST"] =  array();
 
 		$this->routerReq["GET"]["/"]        = "homeController"; 		
+		$this->routerReq["GET"]["/shantanu"]        = "shantanuController"; 		
 
-		if(is_array($this->routerReq[$pReqData["REQUEST_METHOD"]])){			
+		if(is_array($this->routerReq[$pReqData["REQUEST_METHOD"]])){
 			$this->reqData = $pReqData;
 		}else{
 
-				throw new Exception("Page Not Found",404);
+				throw new Exception("Page Not Found lol",404);
 		}
 
 

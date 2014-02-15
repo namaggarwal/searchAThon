@@ -2,7 +2,7 @@
 
 require_once("baseView.php");
 
-class homeView extends baseView{
+class shantanuView extends baseView{
 
 	private $html = "";
 
@@ -28,7 +28,7 @@ class homeView extends baseView{
 		$html .= "</div>";
 		$html .= "<div class='page-body'>";
 		$html .= "<div class='head-text'>";
-		$html .= "<h1>Hackathon Rules</h1>";
+		$html .= "<h1>Shananu's page-body</h1>";
 		$html .= "</div>";
 		$html .= "</div>";
 		$html .= "</div>";

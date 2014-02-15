@@ -2,18 +2,19 @@
 	mapSmall,
 	panaroma,
 	autocomplete,
-	min=5,
-	sec=0,
+	min=0,
+	sec=10,
 	city = '',
 	minObj = $("#min"),
 	secObj = $("#sec"),
 	marker = [],
-	score = 10,
+	score = 5,
+	mymarker='',
 	tempMarkers = [];
       
       function initializeMap(lat,lng) {
       	
-      	var location = new google.maps.LatLng(lat,lng);
+      	var location = new google.maps.LatLng(lat,lng);      	
         var mapOptions = {
           	center: location,
            zoom: 18,
@@ -38,6 +39,7 @@
            streetViewControl: false           
         };
 
+        
 
         
         map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
@@ -46,12 +48,10 @@
 		panaroma = map.getStreetView();
 		
 		var astorPlace = new google.maps.LatLng(lat,lng);
-		panaroma.setPosition(astorPlace);
-		panaroma.setPov(({
-			heading: 265,
-    		pitch: 0}
-    	));
-		panaroma.setVisible(true);
+		var webService = new google.maps.StreetViewService();	  	
+	  	var checkaround = 5000;
+	  	webService.getPanoramaByLocation(astorPlace,checkaround ,gotoNearestStreetView);
+		
 
 		google.maps.event.addListener(panaroma, 'position_changed',onPanaromaChange);
 
@@ -154,7 +154,7 @@
 	  function createFriendsMarkers(fData){
 
 	  	for(var i in fData){
-	  		console.log(fData);
+	  		//console.log(fData);
 	  		marker[i] = new google.maps.Marker({
 			    position: new google.maps.LatLng(fData[i]["LAT"],fData[i]["LONG"]),
 		        map: map,
@@ -176,15 +176,17 @@
 	  }
 
 	  function markerFound(data){
-
-	  	 alert(data["NAME"]);
+	  	 
 	  	 marker[data["KEY"]].setMap(null);
+	  	 $(".names[data-id='"+data["KEY"]+"']").remove();
+	  	 score+=10;
+	  	 updateScore();
 	  	 delete marker[data["KEY"]];
 	  }
 
 	  function onPanaromaChange(){
 
-	  	console.log(panaroma.getPosition());
+	  	//console.log(panaroma.getPosition());
 	  }
 		
 	  function onPlacesChanged(){
@@ -192,16 +194,40 @@
 	  	var location = autocomplete.getPlace().geometry.location;
 	  	var latlng = new google.maps.LatLng(location.d,location.e);
 	  	mapSmall.setCenter(latlng);
-	  	panaroma.setPosition(latlng);
+	  	var webService = new google.maps.StreetViewService();	  	
+	  	var checkaround = 5000;
+	  	webService.getPanoramaByLocation(latlng,checkaround ,gotoNearestStreetView);
+
+	  	
 
 	  }		
+
+	  function gotoNearestStreetView(panoData){	  	
+		    if(panoData){
+
+		         if(panoData.location){
+
+		            if(panoData.location.latLng){
+		                /**Well done you can use a nearest existing street view coordinates**/
+		                panaroma.setPosition(panoData.location.latLng);
+		                panaroma.setPov(({
+							heading: 265,
+    					pitch: 0}
+    					));
+						panaroma.setVisible(true);
+		            }
+		        }
+		    }
+		    /** Else do something... **/
+		}
+
 	   
 	   function onHintClick(){
 	   	if(score<= 0){
 	   		alert("Sorry you cannot take more hint");
 	   		return;
 	   	}
-	   	score = score;
+	   	score -= 5;
 	   	for(var i in marker){
 	   		
 	   		tempMarkers[i]   = new google.maps.Marker({
@@ -211,8 +237,12 @@
 		        icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'		        
 		  	});
 	   	}
-	   	$("#score-card").html(formatTime(score));
+	   	updateScore();
 	   	setTimeout(clearTemporaryMarkers,5000);
+	   }
+
+	   function updateScore(){
+	   	$("#score-card").html(formatTime(score));
 	   }
 
 	   function clearTemporaryMarkers(){

@@ -1,11 +1,12 @@
 <?php
 require_once("config.php");
 require_once("router.php");
-require_once("/protected/controller/baseController.php");
-require_once("/protected/controller/homeController.php");
-require_once("/protected/controller/shantanuController.php");
-require_once("/protected/controller/playController.php");
-require_once("/protected/controller/scoreController.php");
+require_once("./protected/controller/baseController.php");
+require_once("./protected/controller/homeController.php");
+require_once("./protected/controller/shantanuController.php");
+require_once("./protected/controller/playController.php");
+require_once("./protected/controller/scoreController.php");
+require_once("./protected/controller/logoutController.php");
 
 class searchAThon extends baseController{
 

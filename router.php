@@ -15,6 +15,7 @@ class router {
 		$this->routerReq["GET"]["/shantanu"]        = "shantanuController"; 		
 		$this->routerReq["GET"]["/play"]        = "playController"; 		
 		$this->routerReq["POST"]["/score"]        = "scoreController"; 		
+		$this->routerReq["GET"]["/logout"]        = "logoutController"; 		
 		//$this->routerReq["POST"]["/play"]        = "playController"; 		
 
 		if(is_array($this->routerReq[$pReqData["REQUEST_METHOD"]])){

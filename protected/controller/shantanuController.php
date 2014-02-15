@@ -1,7 +1,7 @@
 <?php
 
-require_once("/protected/view/shantanuView.php");
-require_once("/protected/fbapi/facebook.php");
+require_once("./protected/view/shantanuView.php");
+require_once("./protected/fbapi/facebook.php");
 
 //Controller class for the page requests
 class shantanuController extends BaseController{

@@ -1,7 +1,7 @@
 <?php
 
-require_once("/protected/view/playView.php");
-require_once("/protected/fbapi/facebook.php");
+require_once("./protected/view/playView.php");
+require_once("./protected/fbapi/facebook.php");
 
 //Controller class for the page requests
 class playController extends BaseController{
@@ -12,6 +12,7 @@ class playController extends BaseController{
 
 
 	public function init($data){
+
 		$this->data = $data;
 		$this->view  = new playView();
 		//session_destroy();

@@ -1,9 +1,7 @@
 <?php
 
-require_once("./protected/view/homeView.php");
-
 //Controller class for the home page requests
-class homeController {
+class logoutController {
 
 	private $view;
 	private $viewData;
@@ -12,8 +10,7 @@ class homeController {
 
 	public function init($data){
 		$this->data = $data;
-		$this->view  = new homeView();
-
+		
 		$config = array(
 		      'appId' => '225709324284498',
 		      'secret' => 'c4e2f152db4d1e6ca5b752dd9203fede',
@@ -22,19 +19,7 @@ class homeController {
 		);
 
   		$facebook = new Facebook($config);  		
-  		$user_id = $facebook->getUser();
-
-  		if($user_id){
-  			
-  			 header('Location:'.config::BASE_URL."/play") ;
-
-  		}else{
-
-  			$this->viewData["LOGIN_URL"] = $facebook->getLoginUrl();
-  		}
- 
-
-
-		$this->view->init($this->viewData);
+  		//$facebook->destroySession();
+  		header("Location :".config::BASE_URL);
 	}
 }

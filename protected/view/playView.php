@@ -28,11 +28,11 @@ class playView extends baseView{
 		$html .= "</div>";
 		$html .= "<div id='messageBox'>";
 		$html .= "<div id='message'>";
-		$html .= "Loading";
+		$html .= "Select a place";
 		$html .= "</div>";
-		$html .= "<span id='start-button'>";
-		$html .= "Start";
-		$html .= "</span>";
+		$html .= "<div id='init_loc'>";		
+		$html .= "<input type='text' id='init_search' placeholder='Select a place to start'>";
+		$html .= "</div>";
 		$html .= "</div>";		
 		$html .= "<div class='container'>";
 		$html .= "<div class='page-head'>";
@@ -59,6 +59,7 @@ class playView extends baseView{
 		$html .= "</div>";
 		$html .= "</div>";
 		$html .= "<form id='submitScore' method='POST' action='".config::BASE_URL."/score'>";
+		$html .= "<input type='hidden' id='myPlace' name='myPlace' />";			
 		$html .= "<input type='hidden' id='myScore' name='myScore' />";			
 		$html .= "</form>";
 		$html .= "<script type='text/javascript' src='".config::BASE_URL."/public/js/play.js'></script>";

@@ -21,11 +21,11 @@ class scoreView extends baseView{
 
 	function getPageSpecificBody($params){
 
-		$html ='';
+		$html  ='';
 		$html .= '<a href="'.$params["LOGOUT_URL"].'">Logout</a>';
 		$html .= '<p>Thanks for Playing!!!</p>';
 		$html .= '<br/>';
-		$html .= '<p>Your Score is '.$params["SCORE"].'</p>';
+		$html .= '<p>Your Score is '.$params["SCORE"].'at '.$params["PLACE"].'</p>';
 
                 
 

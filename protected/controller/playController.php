@@ -55,11 +55,9 @@ class playController extends BaseController{
 								break;
 					case 'getFriendsLocation':
 
-								//Get my current location here 
-								$myData = $facebook->api('/me?fields=id,name,location','GET');								
-								$location = $facebook->api('/'.$myData["location"]["id"],'GET');
-								$mylat = $location["location"]["latitude"];
-								$mylong = $location["location"]["longitude"];
+								//Get my current location here 								
+								$mylat = $_GET["lat"];
+								$mylong = $_GET["lng"];
 								$friends = array();
 								$myfriends = $facebook->api('/me/friends?fields=id,first_name,username,picture.width(200).height(200)&limit=100');								
 								$myFriendsArr = $myfriends["data"];
@@ -68,8 +66,8 @@ class playController extends BaseController{
 								$mykey = 0;
 								foreach ($myFriendsArr as $key => $value) {
 									$friends[$mykey] = array();
-									$randseed1 = rand(2000,10000);
-									$randseed2 = rand($randseed1,$randseed1+2000);
+									$randseed1 = rand(3000,10000);
+									$randseed2 = rand($randseed1,$randseed1+3000);
 									$rand1 = rand($randseed1,$randseed2);
 									$rand2 = rand(1,10);
 									if($rand2 >= 5){
@@ -77,8 +75,8 @@ class playController extends BaseController{
 									}else{
 										$friends[$mykey]["LAT"] = $mylat-$rand1/1000000;
 									}
-									$randseed1 = rand(2000,10000);
-									$randseed2 = rand($randseed1,$randseed1+2000);
+									$randseed1 = rand(3000,10000);
+									$randseed2 = rand($randseed1,$randseed1+3000);
 									$rand1 = rand($randseed1,$randseed2);
 									$rand2 = rand(1,10);
 									if($rand2 >= 5){

@@ -31,11 +31,13 @@ class scoreController extends BaseController{
   			if(isset($_POST["myScore"])){
   				
   				$myScore = $_POST["myScore"];
+  				$myPlace = $_POST["myPlace"];
   				$this->viewData["SCORE"] = $myScore;
+  				$this->viewData["PLACE"] = $myPlace;
   				$this->viewData["LOGOUT_URL"] = config::BASE_URL."/logout";
 				$this->view->init($this->viewData);
 				$args = array(
-  				  	'message'   => 'I just scored '.$myScore. ' on SearchAThon!',
+  				  	'message'   => 'I just scored '.$myScore. ' on SearchAThon! at '.$myPlace,
     				'link'      => 'http://namanagg.kd.io/searchAthon',
     				'caption'   => 'Can you beat that score? Play hide and seek with your friends online!'
 				);

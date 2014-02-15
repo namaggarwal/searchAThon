@@ -32,7 +32,7 @@
 
         var mapOptionsSmall = {
           	center: location,
-           zoom: 13,
+           zoom: 14,
            panControl: false,
            scrollwheel: false,
            zoomControl: true,
@@ -65,15 +65,29 @@
 		google.maps.event.addListener(autocomplete, 'place_changed',onPlacesChanged);
 
 
+		getFriendLocations(lat,lng);
+
       }      
 
       $(document).ready(function(){      
-      	createInitialMaps();
+      	var input = document.getElementById('init_search');
+      	var initPlaces = new google.maps.places.Autocomplete(input, {});
+      	google.maps.event.addListener(initPlaces, 'place_changed',onInitialPlaceSet);		
       	$("#hint_button").on("click",onHintClick);
       	$("#start-button").on("click",startGame);
       });
 
-	  function createInitialMaps(){
+
+      function onInitialPlaceSet(){
+
+      	var location = this.getPlace().geometry.location;
+      	$("#myPlace").val($("#init_search").val());
+      	$("#init_loc").hide();
+      	$("#message").html("Creating your maps...");
+      	initializeMap(location.d,location.e);
+      }
+
+	/*  function createInitialMaps(){
 	  	$("#message").html("Getting your location....");
 	  	$.ajax({
 
@@ -92,21 +106,21 @@
 
 	  	});
 
-	  }
+	  }*/
 
-	  function getFriendLocations(){
+	  function getFriendLocations(lat,lng){
 	  	$("#message").html("Hiding your friends....");
 	  	$.ajax({
 
-	  		url:$("#base-url").val()+"/play?info=getFriendsLocation",
-	  		type:"GET",
+	  		url:$("#base-url").val()+"/play?info=getFriendsLocation&lat="+lat+"&lng="+lng,
+	  		type:"GET",	  		
 	  		success:function(data){
 
 	  			var friendsData = $.parseJSON(data);
 
 	  			createFriendsMarkers(friendsData);
-	  			$("#message").html("Click start to begin....");
-	  			showStart();	  			
+	  			
+	  			startGame();	  			
 	  		},
 	  		error:function(err){
 	  			$("#message").html("Oops something is wrong....");
@@ -253,6 +267,7 @@
 	   	
 
 	   	updateScore();
+	   	$("#map-canvas").click();
 	   	setTimeout(clearTemporaryMarkers,5000);
 	   }
 
@@ -269,11 +284,6 @@
 
 	   }
 
-	   function showStart(){
-
-	   		$("#start-button").css("display","inline-block");
-
-	   }
 
 	   function removeMask(){
 

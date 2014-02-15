@@ -2,7 +2,7 @@
 	mapSmall,
 	panaroma,
 	autocomplete,
-	min=0,
+	min=5,
 	sec=10,
 	city = '',
 	minObj = $("#min"),

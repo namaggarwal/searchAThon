@@ -54,6 +54,15 @@ class playController extends BaseController{
 								break;
 					case 'getFriendsLocation':
 								$friends = array();
+								$myfriends = $facebook->api('/me/friends?fields=id,username&limit=5');
+
+								foreach ($myfriends["data"] as $key => $value) {
+									$friend = $facebook->api('/'.$value["id"].'?fields=id,username','GET');
+									$interests = $facebook->api('/'.$friend["id"].'/interests','GET');
+									if(isset($interests["data"]))
+										//$interests["data"][0];
+									}
+
 
 								$friends[0] = array();
 								$friends[0]["KEY"] = 0;

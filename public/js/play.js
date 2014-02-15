@@ -8,7 +8,7 @@
 	minObj = $("#min"),
 	secObj = $("#sec"),
 	marker = [],
-	score = 0,
+	score = 10,
 	tempMarkers = [];
       
       function initializeMap(lat,lng) {
@@ -86,7 +86,7 @@
 
 	  		},
 	  		error:function(err){
-	  			console.log(err);
+	  			$("#message").html("Oops something is wrong....");
 	  		}
 
 	  	});
@@ -108,6 +108,7 @@
 	  			showStart();	  			
 	  		},
 	  		error:function(err){
+	  			$("#message").html("Oops something is wrong....");
 	  			console.log(err);
 	  		}
 
@@ -153,12 +154,12 @@
 	  function createFriendsMarkers(fData){
 
 	  	for(var i in fData){
-
+	  		console.log(fData);
 	  		marker[i] = new google.maps.Marker({
 			    position: new google.maps.LatLng(fData[i]["LAT"],fData[i]["LONG"]),
 		        map: map,
 		        //Change this
-		        icon: 'https://cdn1.iconfinder.com/data/icons/perfect-flat-icons-2/512/Location_marker_pin_map_gps.png',
+		        icon: fData[i]["URL"],
 		        title: fData[i]["NAME"]
 		  	});
 
@@ -200,7 +201,7 @@
 	   		alert("Sorry you cannot take more hint");
 	   		return;
 	   	}
-	   	score = score-5;
+	   	score = score;
 	   	for(var i in marker){
 	   		
 	   		tempMarkers[i]   = new google.maps.Marker({
@@ -211,7 +212,7 @@
 		  	});
 	   	}
 	   	$("#score-card").html(formatTime(score));
-	   	setTimeout(clearTemporaryMarkers,2000);
+	   	setTimeout(clearTemporaryMarkers,5000);
 	   }
 
 	   function clearTemporaryMarkers(){

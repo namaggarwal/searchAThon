@@ -14,7 +14,7 @@ class playController extends BaseController{
 	public function init($data){
 		$this->data = $data;
 		$this->view  = new playView();
-
+		//session_destroy();
 		//Facebook Test
 
 		$config = array(
@@ -38,12 +38,12 @@ class playController extends BaseController{
 
 					case 'getLocation':
 								//Get my current location here 
-								$myData = $facebook->api('/me?fields=id,name,location,username','GET');
+								$myData = $facebook->api('/me?fields=id,name,location','GET');								
 								$location = $facebook->api('/'.$myData["location"]["id"],'GET');
 		
 								//Get latitude and longitude
 								//Extracting name and username from data
-								$userlink = $myData["username"];
+								
 								$username = $myData["name"];
 								
 								$loc = array();
@@ -53,37 +53,45 @@ class playController extends BaseController{
 								print json_encode($loc);
 								break;
 					case 'getFriendsLocation':
+
+								//Get my current location here 
+								$myData = $facebook->api('/me?fields=id,name,location','GET');								
+								$location = $facebook->api('/'.$myData["location"]["id"],'GET');
+								$mylat = $location["location"]["latitude"];
+								$mylong = $location["location"]["longitude"];
 								$friends = array();
-								$myfriends = $facebook->api('/me/friends?fields=id,username&limit=5');
-
-								foreach ($myfriends["data"] as $key => $value) {
-									$friend = $facebook->api('/'.$value["id"].'?fields=id,username','GET');
-									$interests = $facebook->api('/'.$friend["id"].'/interests','GET');
-									if(isset($interests["data"]))
-										//$interests["data"][0];
+								$myfriends = $facebook->api('/me/friends?fields=id,first_name,username,picture.width(200).height(200)&limit=100');								
+								$myFriendsArr = $myfriends["data"];
+								shuffle($myFriendsArr);
+								//$this->prettyPrint($myFriendsArr);
+								$mykey = 0;
+								foreach ($myFriendsArr as $key => $value) {
+									$friends[$mykey] = array();
+									$randseed1 = rand(2000,10000);
+									$randseed2 = rand($randseed1,$randseed1+2000);
+									$rand1 = rand($randseed1,$randseed2);
+									$rand2 = rand(1,10);
+									if($rand2 >= 5){
+										$friends[$mykey]["LAT"] = $mylat+$rand1/1000000;
+									}else{
+										$friends[$mykey]["LAT"] = $mylat-$rand1/1000000;
 									}
-
-
-								$friends[0] = array();
-								$friends[0]["KEY"] = 0;
-								$friends[0]["NAME"] = "Naman";
-								$friends[0]["LAT"] = "1.316100";
-								$friends[0]["LONG"] = "103.847770";
-								$friends[1] = array();
-								$friends[1]["KEY"] = 1;
-								$friends[1]["NAME"] = "Shantanu";
-								$friends[1]["LAT"] = "1.317100";
-								$friends[1]["LONG"] = "103.847770";
-								$friends[2] = array();
-								$friends[2]["KEY"] = 2;
-								$friends[2]["NAME"] = "Ralston";
-								$friends[2]["LAT"] = "1.318100";
-								$friends[2]["LONG"] = "103.847770";
-								$friends[3] = array();
-								$friends[3]["KEY"] = 3;
-								$friends[3]["NAME"] = "Anbarasan";
-								$friends[3]["LAT"] = "1.317100";
-								$friends[3]["LONG"] = "103.846770";
+									$randseed1 = rand(2000,10000);
+									$randseed2 = rand($randseed1,$randseed1+2000);
+									$rand1 = rand($randseed1,$randseed2);
+									$rand2 = rand(1,10);
+									if($rand2 >= 5){
+										$friends[$mykey]["LONG"] = $mylong+$rand1/1000000;
+									}else{
+										$friends[$mykey]["LONG"] = $mylong-$rand1/1000000;
+									}
+									
+									$friends[$mykey]["KEY"] = $mykey;
+									$friends[$mykey]["NAME"] = $value["first_name"];
+									$friends[$mykey]["URL"] = $value["picture"]["data"]["url"];								
+									$mykey++;
+								}
+								//$this->prettyPrint($friends);
 								print json_encode($friends);
 
 

@@ -38,10 +38,17 @@ class playController extends BaseController{
 
 					case 'getLocation':
 								//Get my current location here 
-
+								$myData = $facebook->api('/me?fields=id,name,location,username','GET');
+								$location = $facebook->api('/'.$myData["location"]["id"],'GET');
+		
+								//Get latitude and longitude
+								//Extracting name and username from data
+								$userlink = $myData["username"];
+								$username = $myData["name"];
+								
 								$loc = array();
-								$loc["LAT"] = "1.316100";
-								$loc["LONG"] = "103.846770";
+								$loc["LAT"] = $location["location"]["latitude"];
+								$loc["LONG"] = $location["location"]["longitude"];
 								print json_encode($loc);
 								break;
 					case 'getFriendsLocation':

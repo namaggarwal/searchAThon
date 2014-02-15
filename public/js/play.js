@@ -178,6 +178,7 @@
 
 	  	 alert(data["NAME"]);
 	  	 marker[data["KEY"]].setMap(null);
+	  	 delete marker[data["KEY"]];
 	  }
 
 	  function onPanaromaChange(){
@@ -195,7 +196,30 @@
 	  }		
 	   
 	   function onHintClick(){
+	   	if(score<= 0){
+	   		alert("Sorry you cannot take more hint");
+	   		return;
+	   	}
 	   	score = score-5;
+	   	for(var i in marker){
+	   		
+	   		tempMarkers[i]   = new google.maps.Marker({
+			    position: new google.maps.LatLng(marker[i].position.d,marker[i].position.e),
+		        map: mapSmall,
+		        //Change this
+		        icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'		        
+		  	});
+	   	}
 	   	$("#score-card").html(formatTime(score));
+	   	setTimeout(clearTemporaryMarkers,2000);
+	   }
+
+	   function clearTemporaryMarkers(){
+
+	   		for(var i in tempMarkers){
+				tempMarkers[i].setMap(null);
+				delete tempMarkers[i];
+	   		}
+
 	   }
 

@@ -3,6 +3,11 @@
 	margin-right: 10%;
 	margin-top: 2%;
 }
+
+.head-links a{
+	margin-right: 20px;
+}
+
 .head-Text{
 	text-align: center;
 	font-size: 20px;

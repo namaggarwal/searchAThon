@@ -17,12 +17,17 @@ class searchAThon extends baseController{
 	private function setRequestParams(){
 
 
-
 		$this->req_method = strtoupper($_SERVER["REQUEST_METHOD"]);
-		$this->req_url = str_replace(config::BASE_URL,"",$_SERVER['REQUEST_URI']);
-
+		$this->req_url = str_replace(config::BASE_URL,"",$_SERVER['REQUEST_URI']);			
+		$payloadPos = strpos($this->req_url,"?");
+		if($payloadPos){
+			$this->req_data = substr($this->req_url,$payloadPos+1);
+			$this->req_url = substr($this->req_url,0,$payloadPos);
+			
+		}
 		$this->contData["REQUEST_METHOD"] = $this->req_method;
 		$this->contData["REQUEST_URL"] = $this->req_url;
+		
 	
 
 	}

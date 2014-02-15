@@ -46,7 +46,7 @@ class playView extends baseView{
 		$html .= "<div class='page-body'>";
 		$html .= '<div id="left-panel">';
 		$html .= "<input type='text' id='search_place' placeholder='Search a place' style='width:70%' />";
-		$html .= "<div type='button' id='hint_button' style='width:20%;margin-left:5%;display:inline-block;background:#3e7bd4'>Hint</div>";
+		$html .= "<div type='button' id='hint_button' title='Click here to see the markers for 2 seconds'>Hint</div>";
 		$html .= "<div id='map-small' style='width:100%;height:300px'></div>";		
 		$html .= '<br/>';
 		$html .= "<div id='name-data'></div>";

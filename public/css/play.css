@@ -105,6 +105,13 @@
 
 }
 
+#hint_button{
+	width:20%;
+	margin-left:5%;
+	display:inline-block;
+	background:#3e7bd4;
+}
+
 #start-button{
 
 	margin-top: 4%;

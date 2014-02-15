@@ -49,6 +49,7 @@ class playController extends BaseController{
 								$loc = array();
 								$loc["LAT"] = $location["location"]["latitude"];
 								$loc["LONG"] = $location["location"]["longitude"];
+								$loc["CITY"] = $location["name"];							
 								print json_encode($loc);
 								break;
 					case 'getFriendsLocation':

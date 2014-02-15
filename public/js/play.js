@@ -4,6 +4,7 @@
 	autocomplete,
 	min=5,
 	sec=0,
+	city = '',
 	minObj = $("#min"),
 	secObj = $("#sec"),
 	marker = [],
@@ -224,7 +225,7 @@
 
 	   function showStart(){
 
-	   		$("#start-button").show();
+	   		$("#start-button").css("display","inline-block");
 
 	   }
 

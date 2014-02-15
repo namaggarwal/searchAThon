@@ -121,6 +121,7 @@
 	border: 1px solid green;
 	border-radius: 10px;
 	cursor: pointer;
+	display: none;
 }
 
 #start-button:hover{

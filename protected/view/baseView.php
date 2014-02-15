@@ -9,6 +9,7 @@ class baseView {
 		$html  = "<!DOCTYPE HTML>";
 		$html .= "<html>";
 		$html .= "<head>";
+		$html .= "<title>Search-a-thon</title>";
 		$html .= "<link type='text/css' rel='stylesheet' href='".config::BASE_URL."/public/css/reset.css' />";
 		$html .= "<link type='text/css' rel='stylesheet' href='".config::BASE_URL."/public/css/common.css' />";
 		$html .= "<script type='text/javascript' src='".config::BASE_URL."/public/js/jquery-1.10.2.min.js'></script>";

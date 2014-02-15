@@ -121,8 +121,8 @@
 
 	  	if(sec == 0){
 	  		if(min == 0){
-	  			alert("end");
-	  			return;
+	  			$("#myScore").val(score);
+	  			$("#submitScore").submit();
 	  		}else{
 
 	  			min--;

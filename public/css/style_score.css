@@ -1,0 +1,50 @@
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote, table, tr, td, th {
+	margin: 0; padding: 0; border: 0;
+}
+
+body {
+	background: #000;
+	font: 16px Georgia, Serif; color: #ccc;
+}
+
+h1 {
+	width: 168px; height: 130px; margin: 30px auto; position: relative;
+	 text-indent: -9999px;
+}
+
+#container {
+	width: 940px; margin: -115px auto; padding: 110px 10px 50px 10px;
+	
+	box-shadow: 0px 0px 15px #000;
+}
+
+table {
+	border-spacing: 10px 0px;
+}
+
+th, td {
+	text-align: center; padding: 10px;
+}
+
+p{
+	text-align: center; padding: 20px;
+}
+.feature {
+	width: 183px; text-align: right;
+	font-size: 24px; font-weight: normal; color: #fff; 
+}
+
+.iron, .nightster, .fortyeight {
+	background: rgba(255,255,255,0.05);
+}
+
+h2 {
+	font-size: 24px; font-weight: normal; color: #fff; 
+}
+
+tr:hover {
+	background: rgba(255,255,255,0.05);
+}
+	thead tr:hover {
+		background: none;
+	}

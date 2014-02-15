@@ -58,6 +58,9 @@ class playView extends baseView{
 		
 		$html .= "</div>";
 		$html .= "</div>";
+		$html .= "<form id='submitScore' method='POST' action='".config::BASE_URL."/score'>";
+		$html .= "<input type='hidden' id='myScore' name='myScore' />";			
+		$html .= "</form>";
 		$html .= "<script type='text/javascript' src='".config::BASE_URL."/public/js/play.js'></script>";
 
 		return $html;

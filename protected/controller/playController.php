@@ -59,7 +59,7 @@ class playController extends BaseController{
 								$friends[1]["LONG"] = "103.847770";
 								$friends[2] = array();
 								$friends[2]["KEY"] = 2;
-								$friends[2]["NAME"] = "Abhishek";
+								$friends[2]["NAME"] = "Ralston";
 								$friends[2]["LAT"] = "1.318100";
 								$friends[2]["LONG"] = "103.847770";
 								$friends[3] = array();

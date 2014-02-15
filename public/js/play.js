@@ -1,6 +1,14 @@
 	var map,
+	mapSmall,
 	panaroma,
-	marker = [];
+	autocomplete,
+	min=5,
+	sec=0,
+	minObj = $("#min"),
+	secObj = $("#sec"),
+	marker = [],
+	score = 10,
+	tempMarkers = [];
       
       function initializeMap(lat,lng) {
       	
@@ -14,12 +22,25 @@
            scaleControl: false,
            streetViewControl: true,
            streetViewControlOptions: {
-           mapTypeControl: true,
+           mapTypeControl: false,
            mapTypeId: google.maps.MapTypeId.ROADMAP
    			}
         };
+
+        var mapOptionsSmall = {
+          	center: location,
+           zoom: 13,
+           panControl: false,
+           scrollwheel: false,
+           zoomControl: true,
+           scaleControl: false,
+           streetViewControl: false           
+        };
+
+
         
         map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+        mapSmall = new google.maps.Map(document.getElementById("map-small"),mapOptionsSmall);
 		
 		panaroma = map.getStreetView();
 		
@@ -33,11 +54,20 @@
 
 		google.maps.event.addListener(panaroma, 'position_changed',onPanaromaChange);
 
+		var input = document.getElementById('search_place');
+		var options = {
+			 	
+		};
+
+		autocomplete = new google.maps.places.Autocomplete(input, options);
+		google.maps.event.addListener(autocomplete, 'place_changed',onPlacesChanged);
+
 
       }      
 
       $(document).ready(function(){      
       	createInitialMaps();
+      	$("#hint_button").on("click",onHintClick);
       });
 
 	  function createInitialMaps(){
@@ -50,6 +80,10 @@
 	  			var loc = $.parseJSON(data);
 	  			initializeMap(loc.LAT,loc.LONG);
 	  			getFriendLocations();
+
+
+
+
 	  		},
 	  		error:function(err){
 	  			console.log(err);
@@ -70,6 +104,7 @@
 	  			var friendsData = $.parseJSON(data);
 
 	  			createFriendsMarkers(friendsData);
+	  			updateTimer();
 
 	  		},
 	  		error:function(err){
@@ -79,6 +114,39 @@
 	  	});
 
 
+	  }
+
+	  function updateTimer(){
+
+	  	if(sec == 0){
+	  		if(min == 0){
+	  			alert("end");
+	  			return;
+	  		}else{
+
+	  			min--;
+	  			sec=59;
+	  		}
+
+	
+	  	}else{
+			sec--;	  		
+
+	  	}
+
+	  	minObj.html(formatTime(min));
+	  	secObj.html(formatTime(sec));
+
+	  	setTimeout(updateTimer,1000);
+	
+	  }
+
+	  function formatTime(t){
+
+	  	if(t<10){
+	  		return "0"+t;
+	  	}
+	  	return t;
 	  }
 
 
@@ -99,7 +167,8 @@
 			    	markerFound(mData);
 				});
 			})(fData[i],marker[i]);
-		  	
+		  	var str = '<div class="names" data-id="'+i+'">'+fData[i]["NAME"]+'<div>';
+		  	$("#name-data").append(str);
 	  	}
 
 	  	 
@@ -115,6 +184,18 @@
 
 	  	console.log(panaroma.getPosition());
 	  }
-			
+		
+	  function onPlacesChanged(){
+	  	
+	  	var location = autocomplete.getPlace().geometry.location;
+	  	var latlng = new google.maps.LatLng(location.d,location.e);
+	  	mapSmall.setCenter(latlng);
+	  	panaroma.setPosition(latlng);
+
+	  }		
 	   
+	   function onHintClick(){
+	   	score = score-5;
+	   	$("#score-card").html(formatTime(score));
+	   }
 

@@ -1,0 +1,73 @@
+.page-head{
+
+	overflow: auto;
+	padding: 1% 1%;
+}
+
+#time-board{
+	float:left;
+	width:20%;
+	text-align: center;	
+	border: 1px solid black;
+	margin-left: 10%;
+	background: #d23a36;
+	font-size: 44px;
+	padding: 1%;
+}
+
+#score-card{
+	float:right;
+	width:20%;
+	text-align: center;	
+	border: 1px solid black;
+	margin-right: 10%;
+	background: #589ad9;
+	font-size: 44px;
+	padding: 1%;
+}
+
+.page-body{
+
+	overflow: auto;
+	padding: 1% 1%;
+}
+#left-panel{
+	float:left;
+	width:30%;
+}
+
+#right-panel{
+	float:right;
+	width:69%;
+}
+
+#name-data{
+	border: 1px solid black; 
+	width:100%;
+	max-height: 198px;
+	overflow-y:auto;
+}
+
+#name-data .names{
+	padding: 4px;
+	background: #609fdb;
+	margin: 2px;	
+}
+
+#hint_button{
+	width: 20%;
+	margin-left: 5%;
+	display: inline-block;
+	background: #6897dd;	
+	text-align: center;
+	padding: 3px;
+	border: 1px solid blue;
+	border-radius: 4px;
+	box-shadow: 2px;
+	cursor: pointer;
+}
+
+#hint_button:hover{
+	background: #3e7bd4;
+	color:white;
+}

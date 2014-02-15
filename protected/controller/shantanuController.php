@@ -30,7 +30,7 @@ class shantanuController extends BaseController{
   		if($user_id){
   			print $user_id;
   		}else{
-  			print  "<a href=". $facebook->getLoginUrl().">Login</a>";	
+  			
   		}
   		
 	}

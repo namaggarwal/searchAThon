@@ -4,6 +4,7 @@ require_once("router.php");
 require_once("/protected/controller/baseController.php");
 require_once("/protected/controller/homeController.php");
 require_once("/protected/controller/shantanuController.php");
+require_once("/protected/controller/playController.php");
 
 class searchAThon extends baseController{
 
@@ -22,11 +23,13 @@ class searchAThon extends baseController{
 		$payloadPos = strpos($this->req_url,"?");
 		if($payloadPos){
 			$this->req_data = substr($this->req_url,$payloadPos+1);
-			$this->req_url = substr($this->req_url,0,$payloadPos);
+			$this->req_url = substr($this->req_url,0,$payloadPos);			
+			$this->contData["REQUEST_DATA"] = $this->req_data;
 			
 		}
 		$this->contData["REQUEST_METHOD"] = $this->req_method;
 		$this->contData["REQUEST_URL"] = $this->req_url;
+
 		
 	
 

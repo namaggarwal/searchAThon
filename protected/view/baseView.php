@@ -6,7 +6,8 @@ class baseView {
 
 	function getCommonHead($params){
 
-		$html  = "<html>";
+		$html  = "<!DOCTYPE HTML>";
+		$html .= "<html>";
 		$html .= "<head>";
 		$html .= "<link type='text/css' rel='stylesheet' href='".config::BASE_URL."/public/css/reset.css' />";
 		$html .= "<link type='text/css' rel='stylesheet' href='".config::BASE_URL."/public/css/common.css' />";

@@ -10,6 +10,7 @@
 	marker = [],
 	score = 5,
 	mymarker='',
+	currentmarker,
 	tempMarkers = [];
       
       function initializeMap(lat,lng) {
@@ -186,7 +187,18 @@
 
 	  function onPanaromaChange(){
 
-	  	//console.log(panaroma.getPosition());
+	  	if(currentmarker){
+	  		currentmarker.setPosition(panaroma.getPosition());
+	  	}else{
+  			currentmarker  = new google.maps.Marker({
+			    position: panaroma.getPosition(),
+		        map: mapSmall,
+		        //Change this
+		        icon: ' http://maps.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png'		        
+		  	});
+	  	}
+	  	
+
 	  }
 		
 	  function onPlacesChanged(){
@@ -234,9 +246,12 @@
 			    position: new google.maps.LatLng(marker[i].position.d,marker[i].position.e),
 		        map: mapSmall,
 		        //Change this
-		        icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'		        
+		        icon: ' http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png'		        
 		  	});
 	   	}
+	   	
+	   	
+
 	   	updateScore();
 	   	setTimeout(clearTemporaryMarkers,5000);
 	   }

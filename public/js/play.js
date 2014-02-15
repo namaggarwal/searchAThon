@@ -7,7 +7,7 @@
 	minObj = $("#min"),
 	secObj = $("#sec"),
 	marker = [],
-	score = 10,
+	score = 0,
 	tempMarkers = [];
       
       function initializeMap(lat,lng) {
@@ -68,20 +68,19 @@
       $(document).ready(function(){      
       	createInitialMaps();
       	$("#hint_button").on("click",onHintClick);
+      	$("#start-button").on("click",startGame);
       });
 
 	  function createInitialMaps(){
-	  	
+	  	$("#message").html("Getting your location....");
 	  	$.ajax({
 
 	  		url:$("#base-url").val()+"/play?info=getLocation",
 	  		type:"GET",
 	  		success:function(data){
 	  			var loc = $.parseJSON(data);
-	  			initializeMap(loc.LAT,loc.LONG);
-	  			getFriendLocations();
-
-
+	  			initializeMap(loc.LAT,loc.LONG);	  			
+	  			getFriendLocations();	  			
 
 
 	  		},
@@ -94,7 +93,7 @@
 	  }
 
 	  function getFriendLocations(){
-
+	  	$("#message").html("Hiding your friends....");
 	  	$.ajax({
 
 	  		url:$("#base-url").val()+"/play?info=getFriendsLocation",
@@ -104,8 +103,8 @@
 	  			var friendsData = $.parseJSON(data);
 
 	  			createFriendsMarkers(friendsData);
-	  			updateTimer();
-
+	  			$("#message").html("Click start to begin....");
+	  			showStart();	  			
 	  		},
 	  		error:function(err){
 	  			console.log(err);
@@ -221,5 +220,23 @@
 				delete tempMarkers[i];
 	   		}
 
+	   }
+
+	   function showStart(){
+
+	   		$("#start-button").show();
+
+	   }
+
+	   function removeMask(){
+
+	   		$("#mask").hide();
+	   		$("#messageBox").hide();
+	   		
+	   }
+
+	   function startGame(){
+	   	removeMask();
+	   	updateTimer();
 	   }
 

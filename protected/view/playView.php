@@ -24,13 +24,23 @@ class playView extends baseView{
 
 	function getPageSpecificBody($params){		
 		$base_url = config::BASE_URL;
-		$html  = "<div class='container'>";
+		$html  = "<div id='mask'>";
+		$html .= "</div>";
+		$html .= "<div id='messageBox'>";
+		$html .= "<div id='message'>";
+		$html .= "Loading";
+		$html .= "</div>";
+		$html .= "<span id='start-button'>";
+		$html .= "Start";
+		$html .= "</span>";
+		$html .= "</div>";		
+		$html .= "<div class='container'>";
 		$html .= "<div class='page-head'>";
 		$html .= "<div id='time-board'>";
 		$html .= "<span id='min'></span>:<span id='sec'></span>";
 		$html .= "</div>";
 		$html .= "<div id='score-card'>";
-		$html .= "10";
+		$html .= "0";
 		$html .= "</div>";
 		$html .= "</div>";
 		$html .= "<div class='page-body'>";

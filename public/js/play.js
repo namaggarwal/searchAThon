@@ -197,6 +197,9 @@
 	  	 $(".names[data-id='"+data["KEY"]+"']").remove();
 	  	 score+=10;
 	  	 updateScore();
+	  	 $("#infoBox").html("Congrats you found "+data["NAME"]);
+  	 	 $("#infoBox").show();
+  	 	 $("#infoBox").fadeOut(2000);
 	  	 delete marker[data["KEY"]];
 	  }
 

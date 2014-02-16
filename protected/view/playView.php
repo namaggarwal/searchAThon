@@ -26,6 +26,9 @@ class playView extends baseView{
 		$base_url = config::BASE_URL;
 		$html  = "<div id='mask'>";
 		$html .= "</div>";
+		$html  = "<div id='infoBox'>";
+		$html .= "Congrats you found Archita";		
+		$html .= "</div>";		
 		$html .= "<div id='messageBox'>";
 		$html .= "<div id='message'>";
 		$html .= "Select a place";
@@ -36,6 +39,9 @@ class playView extends baseView{
 		$html .= "</div>";		
 		$html .= "<div class='container'>";
 		$html .= "<div class='page-head'>";
+		$html .= "<div id='app-name'>";
+		$html .= "Search-a-thon";
+		$html .= "</div>";		
 		$html .= "<div id='time-board'>";
 		$html .= "<span id='min'></span>:<span id='sec'></span>";
 		$html .= "</div>";

@@ -2,10 +2,31 @@
 .container{
 	display: none;
 }
+
+#app-name{
+	position: absolute;
+font-size: 32px;
+color: white;
+margin-left: 40%;
+margin-top: 2%;
+}
+
+body{
+	background: black;
+}
 .page-head{
 
 	overflow: auto;
 	padding: 1% 1%;
+}
+#infoBox{
+	position: absolute;
+	padding: 20px;
+	background: #dbec27;
+	top: 4px;
+	right: 4px;
+	opacity: 0.8;
+	display: none;
 }
 
 #time-board{

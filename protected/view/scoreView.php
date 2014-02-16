@@ -25,7 +25,7 @@ class scoreView extends baseView{
 		$html .= '<a href="'.$params["LOGOUT_URL"].'">Logout</a>';
 		$html .= '<p>Thanks for Playing!!!</p>';
 		$html .= '<br/>';
-		$html .= '<p>Your Score is '.$params["SCORE"].'at '.$params["PLACE"].'</p>';
+		$html .= '<p>Your Score is '.$params["SCORE"].' at '.$params["PLACE"].'</p>';
 
                 
 

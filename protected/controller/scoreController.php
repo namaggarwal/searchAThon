@@ -41,7 +41,11 @@ class scoreController extends BaseController{
     				'link'      => 'http://namanagg.kd.io/searchAthon',
     				'caption'   => 'Can you beat that score? Play hide and seek with your friends online!'
 				);
-  				$isPosted = $facebook->api('/'.$user_id.'/feed','POST',$args);
+				try {
+					$isPosted = $facebook->api('/'.$user_id.'/feed','POST',$args);	
+				} catch (Exception $e) {
+					
+				}  				
   			}else{
   				header("Location:".config::BASE_URL);	
   			}

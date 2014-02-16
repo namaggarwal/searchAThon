@@ -2,7 +2,7 @@
 	mapSmall,
 	panaroma,
 	autocomplete,
-	min=0,
+	min=2,
 	sec=10,
 	city = '',
 	minObj = $("#min"),
@@ -81,6 +81,7 @@
       function onInitialPlaceSet(){
 
       	var location = this.getPlace().geometry.location;
+      	$(".container").show();
       	$("#myPlace").val($("#init_search").val());
       	$("#init_loc").hide();
       	$("#message").html("Creating your maps...");
